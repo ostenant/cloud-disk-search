@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.ellis.yun.search.bdsola.pojo.hibernate">
+	<class name="BdSolaUrlDetail" table="bdsola_url_detail">
+		<id name="id" column="id" length="50" type="string">
+			<generator class="assigned"></generator>
+		</id>
+
+		<property name="shareTitle" column="share_title" type="string" length="55"></property>
+		<property name="sharer" column="sharer" type="string" length="40"></property>
+		<property name="shareTime" column="share_time" type="timestamp"></property>
+		<property name="fileType" column="file_type" type="string" length="10"></property>
+		<property name="firstLevelUrl" column="first_level_url" type="string" length="150"></property>
+		
+		<property name="secondLevelUrl" column="second_level_url" type="string" length="150"></property>
+		<property name="yunShareId" column="yun_share_id" type="string" length="50"></property>
+		<property name="useCache" column="use_cache" type="boolean"></property>
+		<property name="filePath" column="file_path" type="string" length="180"></property>
+		<property name="lastCrawlTime" column="last_crawl_time" type="timestamp"></property>
+		<property name="crawlTimes" column="crawl_times" type="integer"></property>
+		<property name="isCrawled" column="is_crawled" type="boolean"></property>
+
+		<many-to-one name="bdSolaUrlList" class="BdSolaUrlList" column="list_id"></many-to-one>
+
+	</class>
+</hibernate-mapping>

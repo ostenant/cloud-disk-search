@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ellis.yun.search.bdsola.dao.mybatis.BdSolaUrlDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.ellis.yun.search.bdsola.pojo.mybatis.BdSolaUrlDetail" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="share_title" property="shareTitle" jdbcType="VARCHAR" />
+    <result column="sharer" property="sharer" jdbcType="VARCHAR" />
+    <result column="share_time" property="shareTime" jdbcType="TIMESTAMP" />
+    <result column="file_type" property="fileType" jdbcType="VARCHAR" />
+    <result column="first_level_url" property="firstLevelUrl" jdbcType="VARCHAR" />
+    <result column="second_level_url" property="secondLevelUrl" jdbcType="VARCHAR" />
+    <result column="yun_share_id" property="yunShareId" jdbcType="VARCHAR" />
+    <result column="use_cache" property="useCache" jdbcType="BIT" />
+    <result column="file_path" property="filePath" jdbcType="VARCHAR" />
+    <result column="last_crawl_time" property="lastCrawlTime" jdbcType="TIMESTAMP" />
+    <result column="crawl_times" property="crawlTimes" jdbcType="INTEGER" />
+    <result column="is_crawled" property="isCrawled" jdbcType="BIT" />
+    <result column="list_id" property="listId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, share_title, sharer, share_time, file_type, first_level_url, second_level_url, 
+    yun_share_id, use_cache, file_path, last_crawl_time, crawl_times, is_crawled, list_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from "bdsola_url_detail"
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from "bdsola_url_detail"
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ellis.yun.search.bdsola.pojo.mybatis.BdSolaUrlDetail" >
+    <selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into "bdsola_url_detail" (id, share_title, sharer, 
+      share_time, file_type, first_level_url, 
+      second_level_url, yun_share_id, use_cache, 
+      file_path, last_crawl_time, crawl_times, 
+      is_crawled, list_id)
+    values (#{id,jdbcType=VARCHAR}, #{shareTitle,jdbcType=VARCHAR}, #{sharer,jdbcType=VARCHAR}, 
+      #{shareTime,jdbcType=TIMESTAMP}, #{fileType,jdbcType=VARCHAR}, #{firstLevelUrl,jdbcType=VARCHAR}, 
+      #{secondLevelUrl,jdbcType=VARCHAR}, #{yunShareId,jdbcType=VARCHAR}, #{useCache,jdbcType=BIT}, 
+      #{filePath,jdbcType=VARCHAR}, #{lastCrawlTime,jdbcType=TIMESTAMP}, #{crawlTimes,jdbcType=INTEGER}, 
+      #{isCrawled,jdbcType=BIT}, #{listId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ellis.yun.search.bdsola.pojo.mybatis.BdSolaUrlDetail" >
+    <selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into "bdsola_url_detail"
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="shareTitle != null" >
+        share_title,
+      </if>
+      <if test="sharer != null" >
+        sharer,
+      </if>
+      <if test="shareTime != null" >
+        share_time,
+      </if>
+      <if test="fileType != null" >
+        file_type,
+      </if>
+      <if test="firstLevelUrl != null" >
+        first_level_url,
+      </if>
+      <if test="secondLevelUrl != null" >
+        second_level_url,
+      </if>
+      <if test="yunShareId != null" >
+        yun_share_id,
+      </if>
+      <if test="useCache != null" >
+        use_cache,
+      </if>
+      <if test="filePath != null" >
+        file_path,
+      </if>
+      <if test="lastCrawlTime != null" >
+        last_crawl_time,
+      </if>
+      <if test="crawlTimes != null" >
+        crawl_times,
+      </if>
+      <if test="isCrawled != null" >
+        is_crawled,
+      </if>
+      <if test="listId != null" >
+        list_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=VARCHAR},
+      <if test="shareTitle != null" >
+        #{shareTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="sharer != null" >
+        #{sharer,jdbcType=VARCHAR},
+      </if>
+      <if test="shareTime != null" >
+        #{shareTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fileType != null" >
+        #{fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLevelUrl != null" >
+        #{firstLevelUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="secondLevelUrl != null" >
+        #{secondLevelUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="yunShareId != null" >
+        #{yunShareId,jdbcType=VARCHAR},
+      </if>
+      <if test="useCache != null" >
+        #{useCache,jdbcType=BIT},
+      </if>
+      <if test="filePath != null" >
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="lastCrawlTime != null" >
+        #{lastCrawlTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crawlTimes != null" >
+        #{crawlTimes,jdbcType=INTEGER},
+      </if>
+      <if test="isCrawled != null" >
+        #{isCrawled,jdbcType=BIT},
+      </if>
+      <if test="listId != null" >
+        #{listId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ellis.yun.search.bdsola.pojo.mybatis.BdSolaUrlDetail" >
+    update "bdsola_url_detail"
+    <set >
+      <if test="shareTitle != null" >
+        share_title = #{shareTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="sharer != null" >
+        sharer = #{sharer,jdbcType=VARCHAR},
+      </if>
+      <if test="shareTime != null" >
+        share_time = #{shareTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fileType != null" >
+        file_type = #{fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLevelUrl != null" >
+        first_level_url = #{firstLevelUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="secondLevelUrl != null" >
+        second_level_url = #{secondLevelUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="yunShareId != null" >
+        yun_share_id = #{yunShareId,jdbcType=VARCHAR},
+      </if>
+      <if test="useCache != null" >
+        use_cache = #{useCache,jdbcType=BIT},
+      </if>
+      <if test="filePath != null" >
+        file_path = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="lastCrawlTime != null" >
+        last_crawl_time = #{lastCrawlTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crawlTimes != null" >
+        crawl_times = #{crawlTimes,jdbcType=INTEGER},
+      </if>
+      <if test="isCrawled != null" >
+        is_crawled = #{isCrawled,jdbcType=BIT},
+      </if>
+      <if test="listId != null" >
+        list_id = #{listId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ellis.yun.search.bdsola.pojo.mybatis.BdSolaUrlDetail" >
+    update "bdsola_url_detail"
+    set share_title = #{shareTitle,jdbcType=VARCHAR},
+      sharer = #{sharer,jdbcType=VARCHAR},
+      share_time = #{shareTime,jdbcType=TIMESTAMP},
+      file_type = #{fileType,jdbcType=VARCHAR},
+      first_level_url = #{firstLevelUrl,jdbcType=VARCHAR},
+      second_level_url = #{secondLevelUrl,jdbcType=VARCHAR},
+      yun_share_id = #{yunShareId,jdbcType=VARCHAR},
+      use_cache = #{useCache,jdbcType=BIT},
+      file_path = #{filePath,jdbcType=VARCHAR},
+      last_crawl_time = #{lastCrawlTime,jdbcType=TIMESTAMP},
+      crawl_times = #{crawlTimes,jdbcType=INTEGER},
+      is_crawled = #{isCrawled,jdbcType=BIT},
+      list_id = #{listId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

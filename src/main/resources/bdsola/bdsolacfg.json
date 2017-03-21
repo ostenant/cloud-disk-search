@@ -1,0 +1,16 @@
+{
+	"crawlInterval": "72000000",
+	"crawlPlaceHolder": "bdsola/sourcehtml",
+	"firstLevelPlaceHolder": "bdsola/sourcehtml/firstlevel",
+	"crawlUseCached": true,
+	"crawlThread": 50,
+	"crawlResumable": false,
+	"dicPlaceHolder": "bdsola/kword.dic.cfg",
+	"dicEncoding": "UTF-8",
+	"autoParse": true,
+	"crawlDepth": 2,
+	"crawlTopN": 1000,
+	"crawlRegexList": {
+		
+	}
+}

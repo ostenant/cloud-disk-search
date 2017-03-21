@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ellis.yun.search.bdsola.dao.mybatis.BdSolaUrlListMapper" >
+
+  <resultMap id="BaseResultMap" type="com.ellis.yun.search.bdsola.pojo.mybatis.BdSolaUrlList" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="top_url" property="topUrl" jdbcType="VARCHAR" />
+    <result column="kw" property="kw" jdbcType="VARCHAR" />
+    <result column="search_type" property="searchType" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="current_page" property="currentPage" jdbcType="INTEGER" />
+    <result column="is_cached" property="isCached" jdbcType="BIT" />
+    <result column="cached_dir" property="cachedDir" jdbcType="VARCHAR" />
+    <result column="if_exists" property="ifExists" jdbcType="BIT" />
+    <result column="pages" property="pages" jdbcType="INTEGER" />
+    <result column="last_crawl_time" property="lastCrawlTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, top_url, kw, search_type, sort, current_page, is_cached, cached_dir, if_exists, 
+    pages, last_crawl_time
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from bdsola_url_list
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from bdsola_url_list
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+  <insert id="insert" parameterType="com.ellis.yun.search.bdsola.pojo.mybatis.BdSolaUrlList" >
+    <selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into bdsola_url_list (id, top_url, kw, 
+      search_type, sort, current_page, 
+      is_cached, cached_dir, if_exists, 
+      pages, last_crawl_time)
+    values (#{id,jdbcType=VARCHAR}, #{topUrl,jdbcType=VARCHAR}, #{kw,jdbcType=VARCHAR}, 
+      #{searchType,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{currentPage,jdbcType=INTEGER}, 
+      #{isCached,jdbcType=BIT}, #{cachedDir,jdbcType=VARCHAR}, #{ifExists,jdbcType=BIT}, 
+      #{pages,jdbcType=INTEGER}, #{last_crawl_time})
+  </insert>
+  
+  
+  <insert id="insertSelective" parameterType="com.ellis.yun.search.bdsola.pojo.mybatis.BdSolaUrlList" >
+    <selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into bdsola_url_list
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="topUrl != null" >
+        top_url,
+      </if>
+      <if test="kw != null" >
+        kw,
+      </if>
+      <if test="searchType != null" >
+        search_type,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="currentPage != null" >
+        current_page,
+      </if>
+      <if test="isCached != null" >
+        is_cached,
+      </if>
+      <if test="cachedDir != null" >
+        cached_dir,
+      </if>
+      <if test="ifExists != null" >
+        if_exists,
+      </if>
+      <if test="pages != null" >
+        pages,
+      </if>
+      <if test="lastCrawlTime != null" >
+        last_crawl_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=VARCHAR},
+      <if test="topUrl != null" >
+        #{topUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="kw != null" >
+        #{kw,jdbcType=VARCHAR},
+      </if>
+      <if test="searchType != null" >
+        #{searchType,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="currentPage != null" >
+        #{currentPage,jdbcType=INTEGER},
+      </if>
+      <if test="isCached != null" >
+        #{isCached,jdbcType=BIT},
+      </if>
+      <if test="cachedDir != null" >
+        #{cachedDir,jdbcType=VARCHAR},
+      </if>
+      <if test="ifExists != null" >
+        #{ifExists,jdbcType=BIT},
+      </if>
+      <if test="pages != null" >
+        #{pages,jdbcType=INTEGER},
+      </if>
+      <if test="lastCrawlTime != null" >
+        #{last_crawl_time},
+      </if>
+    </trim>
+  </insert>
+  
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.ellis.yun.search.bdsola.pojo.mybatis.BdSolaUrlList" >
+    update bdsola_url_list
+    <set >
+      <if test="topUrl != null" >
+        top_url = #{topUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="kw != null" >
+        kw = #{kw,jdbcType=VARCHAR},
+      </if>
+      <if test="searchType != null" >
+        search_type = #{searchType,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="currentPage != null" >
+        current_page = #{currentPage,jdbcType=INTEGER},
+      </if>
+      <if test="isCached != null" >
+        is_cached = #{isCached,jdbcType=BIT},
+      </if>
+      <if test="cachedDir != null" >
+        cached_dir = #{cachedDir,jdbcType=VARCHAR},
+      </if>
+      <if test="ifExists != null" >
+        if_exists = #{ifExists,jdbcType=BIT},
+      </if>
+      <if test="pages != null" >
+        pages = #{pages,jdbcType=INTEGER},
+      </if>
+      <if test="lastCrawlTime != null" >
+        last_crawl_time = #{lastCrawlTime}
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <update id="updateByPrimaryKey" parameterType="com.ellis.yun.search.bdsola.pojo.mybatis.BdSolaUrlList" >
+    update bdsola_url_list
+    set top_url = #{topUrl,jdbcType=VARCHAR},
+      kw = #{kw,jdbcType=VARCHAR},
+      search_type = #{searchType,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      current_page = #{currentPage,jdbcType=INTEGER},
+      is_cached = #{isCached,jdbcType=BIT},
+      cached_dir = #{cachedDir,jdbcType=VARCHAR},
+      if_exists = #{ifExists,jdbcType=BIT},
+      pages = #{pages,jdbcType=INTEGER},
+      last_crawl_time = #{lastCrawlTime}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <select id="queryUrlListIds" resultType="java.lang.String">
+  	select id from bdsola_url_list
+  </select>
+  
+</mapper>

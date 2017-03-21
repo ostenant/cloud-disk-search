@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<!--导入属性配置 -->
+	<properties resource="generator.properties"></properties>
+
+
+	<context id="context1" targetRuntime="MyBatis3">
+
+		<commentGenerator>
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+			<!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+		</commentGenerator>
+
+		<!--jdbc的数据库连接 -->
+		<jdbcConnection driverClass="${jdbc.driverClass}"
+			connectionURL="${jdbc.connectionURL}" userId="${jdbc.userId}"
+			password="${jdbc.password}">
+		</jdbcConnection>
+
+		<!-- 1. targetProject:生成PO类的位置 -->
+		<javaModelGenerator targetPackage="com.ellis.yun.search.bdsola.pojo.mybatis"
+			targetProject="src/main/java" />
+
+		<!-- 2. targetProject:mapper映射文件生成的位置 -->
+		<sqlMapGenerator targetPackage="com.ellis.yun.search.bdsola.dao.mybatis"
+			targetProject="src/main/resources" />
+
+		<!-- 3. targetPackage：mapper接口生成的位置 -->
+		<javaClientGenerator targetPackage="com.ellis.yun.search.bdsola.dao.mybatis"
+			targetProject="src/main/java" type="XMLMAPPER" />
+
+		<!-- 4. 指定数据库表 -->
+		<table schema="" tableName="bdsola_url_detail" domainObjectName="BdSolaUrlDetail"
+			delimitIdentifiers="true" enableSelectByPrimaryKey="true"
+			enableInsert="true" enableUpdateByPrimaryKey="true"
+			enableDeleteByPrimaryKey="true" enableCountByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			enableUpdateByExample="false">
+
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" />
+
+		</table>
+
+		<table schema="" tableName="bdsola_url_list" domainObjectName="BdSolaUrlList"
+			delimitIdentifiers="true" enableSelectByPrimaryKey="true"
+			enableInsert="true" enableUpdateByPrimaryKey="true"
+			enableDeleteByPrimaryKey="true" enableCountByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			enableUpdateByExample="false">
+
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" />
+
+		</table>
+
+
+		<!-- 4. 指定数据库表 -->
+		<!-- <table schema="" tableName="bbs_buyer" domainObjectName="Buyer" delimitIdentifiers="true" 
+			enableSelectByPrimaryKey="true" enableInsert="true" enableUpdateByPrimaryKey="true" 
+			enableDeleteByPrimaryKey="true" enableCountByExample="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" enableUpdateByExample="false" /> -->
+
+		<!-- 4. 指定数据库表 -->
+		<!-- <table schema="" tableName="bbs_addr" domainObjectName="Address" delimitIdentifiers="true" 
+			enableSelectByPrimaryKey="true" enableInsert="true" enableUpdateByPrimaryKey="true" 
+			enableDeleteByPrimaryKey="true" enableCountByExample="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" enableUpdateByExample="false" /> -->
+
+		<!-- 4. 指定数据库表 -->
+		<!-- <table schema="" tableName="bbs_city" domainObjectName="City" delimitIdentifiers="true" 
+			enableSelectByPrimaryKey="true" enableInsert="true" enableUpdateByPrimaryKey="true" 
+			enableDeleteByPrimaryKey="true" enableCountByExample="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" enableUpdateByExample="false" /> -->
+
+		<!-- 4. 指定数据库表 -->
+		<!-- <table schema="" tableName="bbs_detail" domainObjectName="Detail" 
+			delimitIdentifiers="true" enableSelectByPrimaryKey="true" enableInsert="true" 
+			enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableCountByExample="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false" 
+			/> -->
+
+		<!-- 4. 指定数据库表 -->
+		<!-- <table schema="" tableName="bbs_employee" domainObjectName="Employee" 
+			delimitIdentifiers="true" enableSelectByPrimaryKey="true" enableInsert="true" 
+			enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableCountByExample="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false" 
+			/> -->
+
+		<!-- <table schema="" tableName="bbs_feature" domainObjectName="Feature" 
+			delimitIdentifiers="true" enableSelectByPrimaryKey="true" enableInsert="true" 
+			enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableCountByExample="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false" 
+			/> 4. 指定数据库表 <table schema="" tableName="bbs_img" domainObjectName="Image" 
+			delimitIdentifiers="true" enableSelectByPrimaryKey="true" enableInsert="true" 
+			enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableCountByExample="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false" 
+			/> 4. 指定数据库表 <table schema="" tableName="bbs_order" domainObjectName="Order" 
+			delimitIdentifiers="true" enableSelectByPrimaryKey="true" enableInsert="true" 
+			enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableCountByExample="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false" 
+			/> 4. 指定数据库表 <table schema="" tableName="bbs_product" domainObjectName="Product" 
+			delimitIdentifiers="true" enableSelectByPrimaryKey="true" enableInsert="true" 
+			enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableCountByExample="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false" 
+			/> 4. 指定数据库表 <table schema="" tableName="bbs_province" domainObjectName="Province" 
+			delimitIdentifiers="true" enableSelectByPrimaryKey="true" enableInsert="true" 
+			enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableCountByExample="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false" 
+			/> 4. 指定数据库表 <table schema="" tableName="bbs_sku" domainObjectName="SkuCell" 
+			delimitIdentifiers="true" enableSelectByPrimaryKey="true" enableInsert="true" 
+			enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableCountByExample="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false" 
+			/> 4. 指定数据库表 <table schema="" tableName="bbs_color" domainObjectName="Color" 
+			delimitIdentifiers="true" enableSelectByPrimaryKey="true" enableInsert="true" 
+			enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableCountByExample="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false" 
+			/> 4. 指定数据库表 <table schema="" tableName="bbs_town" domainObjectName="Town" 
+			delimitIdentifiers="true" enableSelectByPrimaryKey="true" enableInsert="true" 
+			enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true" enableCountByExample="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false" 
+			/> -->
+	</context>
+</generatorConfiguration>

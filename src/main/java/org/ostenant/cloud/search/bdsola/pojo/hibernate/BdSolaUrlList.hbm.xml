@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.ellis.yun.search.bdsola.pojo.hibernate">
+	<class name="BdSolaUrlList" table="bdsola_url_list" lazy="false">
+		<id name="id" column="id" length="50" type="string">
+			<generator class="assigned"></generator>
+		</id>
+
+		<property name="topUrl" column="top_url" type="string" length="100"></property>
+		
+		<property name="kw" column="kw" type="string" length="40"></property>
+		<property name="searchType" column="search_type" type="string" length="20"></property>
+		<property name="sort" column="sort" type="integer" length="2"></property>
+		<property name="currentPage" column="current_page" type="integer" length="3"></property>
+		
+		<property name="isCached" column="is_cached" type="boolean"></property>
+		<property name="cachedDir" column="cached_dir" type="string" length="150"></property>
+		<property name="ifExists" column="if_exists" type="boolean"></property>
+		<property name="pages" column="pages" type="integer" length="3"></property>
+		<property name="lastCrawlTime" column="last_crawl_time" type="timestamp"></property>
+		<property name="avgCrawlTimes" column="avg_crawl_times" type="integer"></property>
+
+
+		<set name="bdSolaUrlDetails" cascade="all" inverse="false">
+			<key column="list_id"></key>
+			<one-to-many class="BdSolaUrlDetail"/>
+		</set>
+	</class>
+</hibernate-mapping>

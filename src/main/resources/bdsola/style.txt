@@ -1,0 +1,66 @@
+.filetype_1 {
+	background: url('../img/ico_file.gif') no-repeat -352px 0px;
+} /*压缩*/
+.filetype_2 {
+	background: url('../img/ico_file.gif') no-repeat -415px 0px;
+} /*其它*/
+.filetype_3 {
+	background: url('../img/ico_file.gif') no-repeat -159px 0px;
+} /*TXT*/
+.filetype_4 {
+	background: url('../img/ico_file.gif') no-repeat -96px 0px;
+} /*文档*/
+.filetype_5 {
+	background: url('../img/ico_file.gif') no-repeat -64px 0px;
+} /*PDF*/
+.filetype_6 {
+	background: url('../img/ico_file.gif') no-repeat -415px 0px;
+} /*其它*/
+.filetype_7 {
+	background: url('../img/ico_file.gif') no-repeat -127px 0px;
+} /*XLS*/
+.filetype_8 {
+	background: url('../img/ico_file.gif') no-repeat -415px 0px;
+} /*其它*/
+.filetype_9 {
+	background: url('../img/ico_file.gif') no-repeat -415px 0px;
+} /*其它*/
+.filetype_10 {
+	background: url('../img/ico_file.gif') no-repeat -319px 0px;
+} /*EXE*/
+.filetype_11 {
+	background: url('../img/ico_file.gif') no-repeat -384px 0px;
+} /*安卓*/
+.filetype_12 {
+	background: url('../img/ico_file.gif') no-repeat -288px 0px;
+} /*苹果*/
+.filetype_13 {
+	background: url('../img/ico_file.gif') no-repeat -256px 0px;
+} /*PPT*/
+.filetype_99 {
+	background: url('../img/ico_file.gif') no-repeat -511px 0px;
+} /*文件夹*/
+.filetype_101 {
+	background: url('../img/ico_file.gif') no-repeat -224px 0px;
+} /*视频*/
+.filetype_102 {
+	background: url('../img/ico_file.gif') no-repeat -192px 0px;
+} /*音乐*/
+.filetype_103 {
+	background: url('../img/ico_file.gif') no-repeat 0px 0px;
+} /*图片*/
+.filetype_104 {
+	background: url('../img/ico_file.gif') no-repeat -96px 0px;
+} /*文档*/
+.filetype_105 {
+	background: url('../img/ico_file.gif') no-repeat -415px 0px;
+} /*其它*/
+.filetype_106 {
+	background: url('../img/ico_file.gif') no-repeat -415px 0px;
+} /*其它*/
+.filetype_107 {
+	background: url('../img/ico_file.gif') no-repeat -448px 0px;
+} /*BT*/
+.filetype_1000 {
+	background: url('../img/ico_file.gif') no-repeat -415px 0px;
+} /*CAD待加*/

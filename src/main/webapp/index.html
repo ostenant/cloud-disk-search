@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>百度云搜索 - 百度云网盘资源搜索下载 - 百度网盘搜索引擎 - 百度网盘之家</title>
+<meta name="keywords" content="百度网盘搜索,百度云搜索,网盘搜索引擎" />
+<meta name="description" content="2016 最新版 百度云搜索,上亿免费资源分享平台" />
+<link href="style/style.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="js/jquery-1.6.2.js"></script>
+</head>
+<body>
+	<div class="logo c">
+		<a href="/"> <img src="pic/logo.gif" border="0" title="百度云搜索"></a>
+	</div>
+	<div class="soso c">
+		<form id="form1" name="form1" method="post" action=""
+			onsubmit="return mysubmit();">
+			<div>
+				<input class="first" name="wd" id="wd" placeholder="  请输入搜索关键词...	"
+					type="text" value="" style="padding-left: 4px;text-align: left;" />
+				<input type="submit" id="Su" value="云盘搜索" />
+			</div>
+			<div>
+				<div id="append" align="center" class="append"></div>
+			</div>
+		</form>
+	</div>
+	<div class="index_ad2 c"></div>
+
+	<script src="js/opensug.js"></script>
+	<script type="text/javascript">
+		//回调函数，用于获取用户当前选择的文字
+		function show(str) {
+			txtObj.innerHTML = str;
+		}
+
+		var params = {
+			"XOffset" : 0, //提示框位置横向偏移量,单位px
+			"YOffset" : 0, //提示框位置纵向偏移量,单位px
+			"width" : 204, //提示框宽度，单位px
+			"fontColor" : "#f70", //提示框文字颜色
+			"fontColorHI" : "#FFF", //提示框高亮选择时文字颜色
+			"fontSize" : "14px", //文字大小
+			"fontFamily" : "宋体", //文字字体
+			"borderColor" : "gray", //提示框的边框颜色
+			"bgcolorHI" : "#03c", //提示框高亮选择的颜色
+			"sugSubmit" : false
+		//在选择提示词条是是否提交表单
+		};
+	</script>
+	<!-- <div class="boot c bh">
+		<p>
+			互联网最大的百度云搜索引擎&nbsp;<a href="http://www.baiduyun.space"
+				target="_blank">百度云论坛 </a>&nbsp;QQ群：<a
+				href="http://jq.qq.com/?_wv=1027&k=27WJMjL" target="_blank">541891536</a>
+		</p>
+		<p>
+			Copyright 2016年 Ver 2.0 All Rights Reserved.&nbsp;
+			<script type="text/javascript">
+				var cnzz_protocol = (("https:" == document.location.protocol) ? " https://"
+						: " http://");
+				document
+						.write(unescape("%3Cspan id='cnzz_stat_icon_2248624'%3E%3C/span%3E%3Cscript src='"
+								+ cnzz_protocol
+								+ "s11.cnzz.com/stat.php%3Fid%3D2248624' type='text/javascript'%3E%3C/script%3E"));
+			</script>
+		</p>
+	</div> 
+	-->
+</body>
+</html>
+
+<script type="text/javascript">
+	var KEY_EVENT = new Object();
+
+	KEY_EVENT.KEY_DOWN = 40;
+	KEY_EVENT.KEY_UP = 38;
+	KEY_EVENT.KEY_ENTER = 13;
+
+	function mysubmit() {
+		if (jQuery.trim($("#wd").val()) == "") {
+			alert("请输入关键词");
+			return false;
+		} else {
+			var citem = $(".addbg");
+			var input = $("#wd");
+			checkItem(input, citem);
+			return false;
+		}
+	}
+
+	function checkItem(input, citem) {
+		if ($(citem).length > 0) {
+			var keyword = jQuery.trim($(citem).html());
+			// <span style="color: #3E92CF">你</span>是我最好的朋友
+			var k1 = $(input).val();
+			var k2 = keyword.substring(keyword.lastIndexOf(">") + 1);
+			$(input).val(k1 + k2);
+			$("#append").hide().html("");
+		}
+	}
+
+	function getItemContent(obj) {
+		var citem = $(".addbg");
+		var input = $("#wd");
+		checkItem(input, citem);
+		$("#append").hide().html("");
+	}
+
+	function focusColor(obj) {
+		var items = document
+				.getElementsByName("content-item");
+		$(items).removeClass("addbg");
+		$(obj).addClass("addbg");
+	}
+
+	$().ready(
+				function() {
+					var array = [ "你好，我是Michael", "你是谁", "你最好啦", "你最珍贵",
+							"你是我最好的朋友", "你画我猜", "你是笨蛋", "你懂得", "你为我着迷",
+							"你是我的眼", "你侬我侬", "你退我当" ];
+
+					$("#append").hide().html("");
+
+					var moveToPrev = function() {
+						var nextLength = $(".addbg").nextAll().length;
+						var prevLength = $(".addbg").prevAll().length;
+						var items = document
+								.getElementsByName("content-item");
+						if (prevLength == 0) {
+							$(items).removeClass("addbg").eq(nextLength)
+									.addClass("addbg");
+						} else {
+							$(items).removeClass("addbg")
+									.eq(prevLength - 1).addClass("addbg");
+						}
+					};
+
+					var moveToNext = function() {
+						var prevLength = $(".addbg").prevAll().length;
+						var citem = $(".addbg");
+						var items = document
+								.getElementsByName("content-item");
+
+						if (citem.length == 0) {
+							$(items).removeClass("addbg").eq(0).addClass(
+									"addbg");
+						} else if (prevLength >= $(items).length - 1) {
+							$(items).removeClass("addbg").eq(0).addClass(
+									"addbg");
+						} else {
+							$(items).removeClass("addbg")
+									.eq(prevLength + 1).addClass("addbg");
+						}
+
+					};
+
+					$("#wd").keydown(function(e) {
+						e = e || window.event;
+						var keycode = e.which ? e.which : e.keyCode;
+
+						if (keycode == KEY_EVENT.KEY_DOWN) {
+							if (jQuery.trim($("#append").html()) == "") {
+								return;
+							}
+							moveToNext();
+						} else if (keycode == KEY_EVENT.KEY_UP) {
+							if (jQuery.trim($("#append").html()) == "") {
+								return;
+							}
+							moveToPrev();
+						} else if (keycode == KEY_EVENT.KEY_ENTER) {
+						}
+
+					});
+
+					var _append = function(obj, target) {
+						var keyword = jQuery.trim($(obj).val());
+						if (keyword == "") {
+							$("#append").hide().html("");
+							return;
+						}
+
+						var content = "";
+						var count = 0;
+						for (var d = 0; d < array.length; d++) {
+							var substr = array[d].substring(0,
+									keyword.length);
+							console.log(substr);
+							if (substr == keyword) {
+								var prefix = "<span style='color: #3E92CF'>"
+										+ substr + "</span>";
+								var suffix = array[d]
+										.substring(substr.length);
+
+								var item = prefix + suffix;
+								content = content
+										+ "<div name='content-item' class='' "
+										+ "  style='padding-left: 4px;text-align: left;cursor:pointer;'"
+										+ "  onmouseenter='focusColor(this)'"
+										+ "  onmouseover='focusColor(this)'"
+										+ "  onClick='getItemContent(this);'>"
+										+ item + "</div>";
+								count++;
+								if (count >= 10) {
+									break;
+								}
+							}
+						}
+
+						if (count >= 10) {
+							$(target).css("height", 25 * 10 + "px");
+						} else {
+							$(target).css("height", 25 * count + "px");
+						}
+
+						if (content != "") {
+							$(target).show().html(content);
+						} else {
+							$(target).hide().html("");
+						}
+
+					};
+
+					$("#wd")
+						.keyup(
+								function(e) {
+									e = e || window.event;
+									var keycode = e.which ? e.which
+											: e.keyCode;
+									if (keycode != KEY_EVENT.KEY_UP
+											&& keycode != KEY_EVENT.KEY_DOWN
+											&& keycode != KEY_EVENT.KEY_ENTER) {
+										_append(
+												document
+														.getElementById("wd"),
+												document
+														.getElementById("append"));
+									}
+						});
+
+				});
+</script>

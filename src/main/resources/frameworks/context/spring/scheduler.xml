@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+     http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	<!-- BdSolaRequestTask类中包含了requestTask方法，用于执行定时任务 -->
+	<bean id="bdSolaRequestTask" class="com.ellis.yun.search.bdsola.trigger.BdSolaRequestTask">
+		<!-- <property name="bdSolaService" ref="bdSolaService"></property> -->
+	</bean>
+
+	<!-- 定时器配置 -->
+	<bean id="bdSolaJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="bdSolaRequestTask"></property>
+		<property name="targetMethod" value="execute"></property>
+	</bean>
+
+	<!-- 定义时间间隔触发器 -->
+	<!-- 解决办法有三种： 
+			1.降低Quartz版本，降到1.X去。 
+			2.升级Spring版本到3.1+，根据Spring的建议，将原来的**TriggerBean替换成**TriggerFactoryBean，例如CronTriggerBean 
+		就可以替换成 CronTriggerFactoryBean。替换之后问题解决。
+		    3.如果不在xml配置文件中引用 Spring 3.0 是支持 Quartz2.2.1(目前最新版本)，直接在程序中调用即可。(我们的文件中转站系统用的是 
+		Spring 3.0+quartz 2.2.1集群模式) -->
+	<bean id="bdSolaTimeTigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="bdSolaJobDetail"></property>
+		<!--cron表达式 -->
+		<property name="cronExpression">
+			<value>0 */5 * * * ?</value>
+		</property>
+	</bean>
+
+	<!-- 启动定时器 -->
+	<bean id="startScheduler" lazy-init="false" autowire="no"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="bdSolaTimeTigger" />
+			</list>
+		</property>
+	</bean>
+</beans>
